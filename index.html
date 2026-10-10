@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07110d">
+  <title>JEBEL RESSAS | The Summit Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07110d;
+      --green: #b5e66a;
+      --white: #f4f5ef;
+      --muted: #a6b0a8;
+      --panel: #101b15;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1150px, 90%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(7, 17, 13, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #ffffff12;
+    }
+
+    .nav-content {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: #d1d8d1;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 27px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background:
+        linear-gradient(90deg, rgba(4,12,8,.92), rgba(4,12,8,.48)),
+        linear-gradient(0deg, var(--bg), transparent 35%),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Ressas%20Mountain%20-%20Tunisia.jpg")
+        center/cover no-repeat;
+    }
+
+    .hero-content {
+      padding-top: 90px;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(55px, 10vw, 112px);
+      line-height: 1.02;
+      margin: 22px 0;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      color: var(--green);
+      display: block;
+    }
+
+    .hero p {
+      color: #d0d8d1;
+      max-width: 550px;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border: 1px solid var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      transition: .3s;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #10190d;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: white;
+      color: #07110d;
+      border-color: white;
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 28px;
+      right: 5%;
+      color: #c1c9c1;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    /* GENERAL SECTIONS */
+    section {
+      padding: 110px 0;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1.15;
+      margin-bottom: 25px;
+    }
+
+    .section-title span {
+      color: var(--green);
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .about-image {
+      height: 490px;
+      background:
+        linear-gradient(0deg, #07110d33, transparent),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Tunisie%20Jebel%20Ressas%201.jpg")
+        center/cover;
+      border: 1px solid #ffffff20;
+      position: relative;
+    }
+
+    .image-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: var(--green);
+      color: #10190d;
+      padding: 12px 17px;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      border-top: 1px solid #ffffff24;
+      padding-top: 15px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--green);
+      font-size: 29px;
+    }
+
+    .stat small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* EXPERIENCE */
+    .experience {
+      background: #0b1710;
+    }
+
+    .experience-header {
+      max-width: 650px;
+      margin-bottom: 45px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid #ffffff12;
+      padding: 30px;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: var(--green);
+    }
+
+    .card-number {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .card h3 {
+      margin: 18px 0 12px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 230px 230px;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      background: #17251b;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 35px 16px 14px;
+      background: linear-gradient(transparent, #000b);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* SAFETY */
+    .safety-box {
+      border: 1px solid #b5e66a55;
+      background: #101b15;
+      padding: 35px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .safety-icon {
+      font-size: 35px;
+    }
+
+    .safety-box h3 {
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background:
+        linear-gradient(#07110de8, #07110df0),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Vue%20panoramique%20de%20Djebal%20Ressas.jpg")
+        center/cover;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid #ffffff15;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        background: #07110d;
+        padding: 25px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .about-image {
+        height: 350px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 200px);
+      }
+
+      .gallery-item:first-child {
+        grid-row: auto;
+        grid-column: span 2;
+      }
+
+      .safety-box {
+        grid-template-columns: 1fr;
+        padding: 25px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .scroll-note {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-content">
+      <a class="logo" href="#home">JEBEL<span>.</span>RESSAS</a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">ACCUEIL</a></li>
+        <li><a href="#about">LE MONTAGNE</a></li>
+        <li><a href="#experience">EXPÉRIENCE</a></li>
+        <li><a href="#gallery">GALERIE</a></li>
+        <li><a href="#safety">SÉCURITÉ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Tunisie · Nature · Aventure</div>
+
+        <h1>
+          BEYOND<br>
+          THE <span>SUMMIT.</span>
+        </h1>
+
+        <p>
+          Découvrez le Jebel Ressas, une montagne majestueuse du paysage tunisien.
+          Une expérience entre nature sauvage, roche calcaire et passion pour l'aventure.
+        </p>
+
+        <div class="buttons">
+          <a href="#about" class="btn btn-primary">EXPLORER LA MONTAGNE ↗</a>
+          <a href="#gallery" class="btn">DÉCOUVRIR LES PHOTOS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-note">SCROLL TO EXPLORE ↓</div>
+  </header>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-image">
+        <div class="image-tag">DJEBEL RESSAS · TUNISIA</div>
+      </div>
+
+      <div>
+        <div class="section-label">01 — À PROPOS</div>
+
+        <h2 class="section-title">
+          Là où la roche<br>
+          rencontre <span>le ciel.</span>
+        </h2>
+
+        <p class="muted">
+          Situé au sud-est de Tunis, le Jebel Ressas est connu pour son relief
+          rocheux et ses paysages calcaires impressionnants. Il attire les
+          passionnés de nature, de photographie et d'activités en montagne.
+        </p>
+
+        <br>
+
+        <p class="muted">
+          Ici, chaque sentier est une invitation à découvrir le paysage,
+          à repousser ses limites avec prudence et à respecter la nature.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>795 m</strong>
+            <small>ALTITUDE DU SOMMET</small>
+          </div>
+
+          <div class="stat">
+            <strong>TUNISIE</strong>
+            <small>SUD-EST DE TUNIS</small>
+          </div>
+
+          <div class="stat">
+            <strong>ROCHE</strong>
+            <small>RELIEF CALCAIRE</small>
+          </div>
+
+          <div class="stat">
+            <strong>AVENTURE</strong>
+            <small>NATURE & EXPLORATION</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="experience" id="experience">
+    <div class="container">
+      <div class="experience-header">
+        <div class="section-label">02 — L'EXPÉRIENCE</div>
+
+        <h2 class="section-title">
+          Une montagne.<br>
+          <span>Mille émotions.</span>
+        </h2>
+
+        <p class="muted">
+          Préparez votre aventure en montagne avec une bonne organisation,
+          un équipement adapté et le respect des règles locales.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-number">01 / EXPLORER</div>
+          <h3>Randonnée</h3>
+          <p>
+            Découvrez les paysages naturels et les reliefs rocheux.
+            Choisissez un itinéraire adapté à votre expérience.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-number">02 / GRIMPER</div>
+          <h3>Escalade</h3>
+          <p>
+            Les parois calcaires demandent des compétences techniques,
+            du matériel approprié et un encadrement qualifié.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-number">03 / CONTEMPLER</div>
+          <h3>Photographie</h3>
+          <p>
+            Immortalisez les formations rocheuses, les panoramas
+            et les couleurs de la montagne.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-label">03 — GALERIE</div>
+
+      <h2 class="section-title">
+        The wild side of <span>Ressas.</span>
+      </h2>
+
+      <p class="muted">
+        Quelques images pour découvrir les paysages du Jebel Ressas.
+      </p>
+
+      <div class="gallery-grid">
+        <a class="gallery-item"
+           href="https://commons.wikimedia.org/wiki/Category:Jebel_Ressas"
+           target="_blank" rel="noopener">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Ressas%20Mountain%20-%20Tunisia.jpg"
+            alt="Paysage du Jebel Ressas"
+            loading="lazy">
+          <div class="gallery-caption">THE MOUNTAIN</div>
+        </a>
+
+        <a class="gallery-item"
+           href="https://commons.wikimedia.org/wiki/Category:Jebel_Ressas"
+           target="_blank" rel="noopener">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Tunisie%20Jebel%20Ressas%201.jpg"
+            alt="Montagne et relief rocheux"
+            loading="lazy">
+          <div class="gallery-caption">ROCK & NATURE</div>
+        </a>
+
+        <a class="gallery-item"
+           href="https://commons.wikimedia.org/wiki/Category:Jebel_Ressas"
+           target="_blank" rel="noopener">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Tunisie%20Jebel%20Ressas%202.jpg"
+            alt="Vue du Jebel Ressas"
+            loading="lazy">
+          <div class="gallery-caption">WILD LANDSCAPE</div>
+        </a>
+
+        <a class="gallery-item"
+           href="https://commons.wikimedia.org/wiki/Category:Jebel_Ressas"
+           target="_blank" rel="noopener">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Vue%20panoramique%20de%20Djebal%20Ressas.jpg"
+            alt="Panorama du Jebel Ressas"
+            loading="lazy">
+          <div class="gallery-caption">THE PANORAMA</div>
+        </a>
+
+        <a class="gallery-item"
+           href="https://commons.wikimedia.org/wiki/Category:Jebel_Ressas"
+           target="_blank" rel="noopener">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/%D8%AC%D8%A8%D9%84%20%D8%A7%D9%84%D8%B1%D8%B5%D8%A7%D8%B5%202.jpg"
+            alt="جبل الرصاص في تونس"
+            loading="lazy">
+          <div class="gallery-caption">TUNISIAN NATURE</div>
+        </a>
+      </div>
+
+      <p class="muted" style="margin-top:20px;font-size:11px">
+        Les images sont chargées depuis Wikimedia Commons. Consultez la page
+        de chaque fichier pour vérifier son auteur et ses conditions d'utilisation.
+      </p>
+    </div>
+  </section>
+
+  <section id="safety">
+    <div class="container">
+      <div class="section-label">04 — AVANT DE PARTIR</div>
+
+      <h2 class="section-title">
+        Adventure with <span>respect.</span>
+      </h2>
+
+      <div class="safety-box">
+        <div class="safety-icon">⚠️</div>
+
+        <div>
+          <h3>La sécurité avant le sommet</h3>
+
+          <p class="muted">
+            Le terrain rocheux peut être difficile et exposé. Avant toute sortie,
+            vérifiez les autorisations d'accès et les conditions locales auprès
+            des autorités compétentes. Ne partez pas seul sur un itinéraire
+            technique et faites appel à un guide qualifié si nécessaire.
+          </p>
+
+          <br>
+
+          <p class="muted">
+            Prévoyez de l'eau, des chaussures adaptées, un téléphone chargé,
+            une trousse de premiers secours et une météo favorable.
+            Ne tentez pas d'escalade sans formation et équipement adaptés.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="section-label">YOUR NEXT ADVENTURE</div>
+
+      <h2 class="section-title">
+        Respect the mountain.<br>
+        <span>Earn the view.</span>
+      </h2>
+
+      <p>
+        La montagne n'est pas seulement une destination.
+        C'est une expérience qui demande préparation, patience et respect.
+      </p>
+
+      <a class="btn btn-primary"
+         href="https://commons.wikimedia.org/wiki/Category:Jebel_Ressas"
+         target="_blank" rel="noopener">
+        EXPLORER LES PHOTOS ↗
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="logo">JEBEL<span>.</span>RESSAS</div>
+      <div>© 2026 — THE SUMMIT EXPERIENCE</div>
+      <div>MADE FOR MOUNTAIN LOVERS.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
